@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BmwWheelsScanner", "BmwWheelsScanner\BmwWheelsScanner.csproj", "{414AA717-1DA4-4E03-9F04-0B03EF6B14CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{414AA717-1DA4-4E03-9F04-0B03EF6B14CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414AA717-1DA4-4E03-9F04-0B03EF6B14CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414AA717-1DA4-4E03-9F04-0B03EF6B14CD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{414AA717-1DA4-4E03-9F04-0B03EF6B14CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414AA717-1DA4-4E03-9F04-0B03EF6B14CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414AA717-1DA4-4E03-9F04-0B03EF6B14CD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5306EB03-5C36-4D84-8DAE-587305A0ABF6}
+	EndGlobalSection
+EndGlobal

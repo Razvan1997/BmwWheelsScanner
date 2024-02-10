@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BmwWheelsScanner.GoogleSearchWheel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcontrols="clr-namespace:BmwWheelsScanner.CustomControls"
+    xmlns:models="clr-namespace:BmwWheelsScanner.Models"
+    BackgroundColor="#ebebeb">
+    <Grid RowDefinitions="*,Auto">
+        <Grid
+            Grid.Row="0"
+            Padding="4"
+            RowDefinitions="Auto,Auto,*"
+            RowSpacing="8">
+            <customcontrols:CustomNavigationBar
+                Grid.Row="0"
+                Margin="10,10"
+                BackCommand="{Binding BackCommand}" />
+            <Label
+                x:Name="lblSearch"
+                Grid.Row="1"
+                FontAttributes="Bold"
+                FontSize="15"
+                HorizontalTextAlignment="Center"
+                Text="{Binding SearchTitleFor}"
+                TextColor="{StaticResource Black}" />
+
+            <CollectionView
+                x:Name="Searches"
+                Grid.Row="2"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding WheelSearches}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GoogleResult">
+                        <Border
+                            Background="{StaticResource White}"
+                            Stroke="{StaticResource Gray200}"
+                            StrokeShape="RoundRectangle 5"
+                            StrokeThickness="1">
+                            <VerticalStackLayout Padding="10" Spacing="10">
+                                <Grid ColumnDefinitions="Auto" ColumnSpacing="20">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="5" />
+                                    <Grid
+                                        ColumnDefinitions="Auto"
+                                        RowDefinitions="Auto,Auto,*"
+                                        RowSpacing="2">
+                                        <Label
+                                            Grid.Row="0"
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding Title}"
+                                            TextColor="#062bbf">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label
+                                            Grid.Row="1"
+                                            LineBreakMode="WordWrap"
+                                            Text="{Binding Snippet}"
+                                            TextColor="{StaticResource Black}"
+                                            TextType="Text" />
+                                        <Label
+                                            Grid.Row="2"
+                                            IsVisible="false"
+                                            Text="{Binding Link}"
+                                            TextColor="{StaticResource Black}" />
+                                    </Grid>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <customcontrols:CustomLoadingIndicator x:Name="loading" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BmwWheelsScanner.WheelDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:BmwWheelsScanner.Converters"
+    xmlns:customcontrols="clr-namespace:BmwWheelsScanner.CustomControls"
+    xmlns:models="clr-namespace:BmwWheelsScanner.Models"
+    Title="Wheel Details"
+    BackgroundColor="#ebebeb">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageSourceConverter x:Key="imageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*,Auto">
+        <Grid
+            Grid.Row="0"
+            MaximumWidthRequest="500"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
+            RowSpacing="8">
+            <customcontrols:CustomNavigationBar
+                Grid.Row="1"
+                Margin="10,0"
+                BackCommand="{Binding BackCommand}" />
+            <VerticalStackLayout Grid.Row="2" Spacing="10">
+                <customcontrols:CustomCarosuelView CarosuelHeight="200" ItemSource="{Binding Images}" />
+            </VerticalStackLayout>
+
+            <Button
+                x:Name="btnViewInfo"
+                Grid.Row="3"
+                Clicked="Button_Clicked"
+                IsVisible="False"
+                MaximumWidthRequest="300"
+                Text="View info on internet" />
+
+            <Label
+                x:Name="lblSpecs"
+                Grid.Row="4"
+                FontAttributes="Bold"
+                FontSize="15"
+                HorizontalTextAlignment="Center"
+                IsVisible="False"
+                Text="Wheel specification"
+                TextColor="{StaticResource Black}" />
+            <CollectionView
+                x:Name="WheelSpecs"
+                Grid.Row="5"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding WheelSpecification}"
+                WidthRequest="300">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:WheelSpecs">
+                        <Border
+                            Background="{StaticResource White}"
+                            Stroke="{StaticResource Gray200}"
+                            StrokeShape="RoundRectangle 5"
+                            StrokeThickness="1">
+                            <VerticalStackLayout Padding="10" Spacing="10">
+                                <Grid ColumnDefinitions="Auto" ColumnSpacing="20">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                        <Grid
+                                            ColumnDefinitions="Auto,*"
+                                            ColumnSpacing="10"
+                                            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
+                                            RowSpacing="10">
+
+                                            <Label
+                                                Grid.Row="1"
+                                                FontAttributes="Bold"
+                                                Text="Series"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Text="{Binding Series}"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <Label
+                                                Grid.Row="2"
+                                                FontAttributes="Bold"
+                                                Text="Model"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                Text="{Binding Model}"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <Label
+                                                Grid.Row="3"
+                                                FontAttributes="Bold"
+                                                Text="Except"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Text="{Binding Except}"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="4"
+                                                FontAttributes="Bold"
+                                                Text="Size"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="4"
+                                                Grid.Column="1"
+                                                Text="{Binding Size}"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <Label
+                                                Grid.Row="5"
+                                                FontAttributes="Bold"
+                                                Text="Use"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="5"
+                                                Grid.Column="1"
+                                                Text="{Binding Use}"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <Label
+                                                Grid.Row="6"
+                                                FontAttributes="Bold"
+                                                Text="ET"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="6"
+                                                Grid.Column="1"
+                                                Text="{Binding ET}"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <Label
+                                                Grid.Row="7"
+                                                FontAttributes="Bold"
+                                                Text="Kg"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                Grid.Row="7"
+                                                Grid.Column="1"
+                                                Text="{Binding Kg}"
+                                                TextColor="{StaticResource Black}" />
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <customcontrols:CustomLoadingIndicator x:Name="loading" />
+    </Grid>
+</ContentPage>

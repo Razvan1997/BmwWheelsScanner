@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BmwWheelsScanner.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcontrols="clr-namespace:BmwWheelsScanner.CustomControls"
+    xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+    xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+    xmlns:models="clr-namespace:BmwWheelsScanner.Models"
+    BackgroundColor="#ebebeb">
+
+    <Grid RowDefinitions="*,Auto">
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="Auto,Auto,Auto,Auto,*"
+            RowSpacing="8">
+            <Frame
+                Padding="0"
+                CornerRadius="150"
+                HasShadow="False"
+                HeightRequest="300"
+                WidthRequest="300">
+                <cv:CameraView
+                    x:Name="CameraView"
+                    CamerasLoaded="CameraView_CamerasLoaded"
+                    HeightRequest="300"
+                    WidthRequest="300" />
+            </Frame>
+            <Button
+                Grid.Row="1"
+                Clicked="Button_Clicked"
+                MaximumWidthRequest="300"
+                Text="Scan" />
+            <Image
+                x:Name="outImage"
+                Grid.Row="2"
+                HeightRequest="200"
+                IsVisible="False"
+                WidthRequest="200" />
+
+            <Label
+                x:Name="lblNotFound"
+                Grid.Row="3"
+                Margin="10,10,0,0"
+                HorizontalTextAlignment="Center" />
+
+            <CollectionView
+                x:Name="WheelsCollection"
+                Grid.Row="4"
+                Margin="10"
+                ItemsSource="{Binding Wheels}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="5"
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Wheel">
+                        <customcontrols:WheelTileView
+                            WheelPicture="{Binding WheelPicture}"
+                            WheelStyleName="{Binding WheelStyleName}"
+                            WheelTappedCommand="{Binding Source={x:Reference WheelsCollection}, Path=BindingContext.NavigateToDetailsScreen}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <customcontrols:CustomLoadingIndicator x:Name="loading" />
+    </Grid>
+</ContentPage>

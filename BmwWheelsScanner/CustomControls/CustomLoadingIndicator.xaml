@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="BmwWheelsScanner.CustomControls.CustomLoadingIndicator"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    x:Name="Custom_Loading_Indicator">
+    <Grid
+        BackgroundColor="#C0C0C0"
+        HorizontalOptions="FillAndExpand"
+        IsVisible="{Binding Source={x:Reference Custom_Loading_Indicator}, Path=IsBusy}"
+        Opacity="0.8"
+        VerticalOptions="FillAndExpand">
+        <VerticalStackLayout
+            Margin="0,310,20,0"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <skia:SKLottieView
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                IsVisible="{Binding Source={x:Reference Custom_Loading_Indicator}, Path=IsBusy}"
+                RepeatCount="-1"
+                Source="loading.json"
+                WidthRequest="200" />
+            <!--<ActivityIndicator
+                HeightRequest="30"
+                IsRunning="{Binding Source={x:Reference Custom_Loading_Indicator}, Path=IsBusy}"
+                WidthRequest="30"
+                Color="Purple" />-->
+            <Label
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Source={x:Reference Custom_Loading_Indicator}, Path=LoadingText}"
+                TextColor="{StaticResource Primary}"
+                VerticalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentView>
